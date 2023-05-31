@@ -21,29 +21,13 @@ namespace BrokerApp
         /// <param name="stock"></param>
         /// <param name="quantity"></param>
         /// <param name="ownedType"></param>
-        public OwnedStocks(int id, Stock stock, int quantity, string ownedType) 
+        public OwnedStocks(int id, Stock stock, int quantity, string ownedType, double stockBoughtValue) 
         {
             _id = id;
             _stock = stock;
             _quantity = quantity;
             _ownedType = ownedType;
-            _stockBoughtValue = stock.Value;
-            this.CalculateValue();
-        }
-
-        /// <summary>
-        /// Overload Constructor
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="stock"></param>
-        /// <param name="quantity"></param>
-        /// <param name="ownedType"></param>
-        public OwnedStocks(Stock stock, int quantity, string ownedType)
-        {
-            _stock = stock;
-            _quantity = quantity;
-            _ownedType = ownedType;
-            _stockBoughtValue = stock.Value;
+            _stockBoughtValue = stockBoughtValue;
             this.CalculateValue();
         }
 

@@ -244,7 +244,7 @@ namespace BrokerApp
         {
             if (ownedStocksDB.UserID.Equals(userID) && stock.Id.Equals(ownedStocksDB.StockID))
             {
-                this.BuildOwnedStockObject(ownedStocksDB.Id ,ownedStocksDB, stock, ownedStockList);
+                this.BuildOwnedStockObject(ownedStocksDB.Id ,ownedStocksDB, stock, ownedStockList, ownedStocksDB.StockBoughtValue);
             }
         }
 
@@ -254,9 +254,9 @@ namespace BrokerApp
         /// <param name="ownedStocksDB"></param>
         /// <param name="stock"></param>
         /// <param name="ownedStockList"></param>
-        private void BuildOwnedStockObject(int ID ,UserOwnedStockDB ownedStocksDB, Stock stock, List<OwnedStocks> ownedStockList)
+        private void BuildOwnedStockObject(int ID ,UserOwnedStockDB ownedStocksDB, Stock stock, List<OwnedStocks> ownedStockList, double StockBoughtValue)
         {
-            OwnedStocks ownedStocks = new OwnedStocks(ID, stock, ownedStocksDB.Quantity, ownedStocksDB.OwnedType);
+            OwnedStocks ownedStocks = new OwnedStocks(ID, stock, ownedStocksDB.Quantity, ownedStocksDB.OwnedType, StockBoughtValue);
             ownedStockList.Add(ownedStocks);
         }
 
@@ -505,7 +505,7 @@ namespace BrokerApp
         private void AddOwnedStockIntoPortfolio(Order selectedOrder, DataContext context)
         {
             //Add OwnedStocks object into Portfolio
-            OwnedStocks ownedStocks = new OwnedStocks(selectedOrder.GetOrderedStock(), selectedOrder.Quantity, selectedOrder.OrderType);
+            OwnedStocks ownedStocks = new OwnedStocks(selectedOrder.GetOrderedStock(), selectedOrder.Quantity, selectedOrder.OrderType, selectedOrder.GetOrderedStock().Value);
 
             //Add OwnedStocks object into Database
             UserOwnedStockDB userOwnedStock = new UserOwnedStockDB

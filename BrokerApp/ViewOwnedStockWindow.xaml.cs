@@ -201,27 +201,37 @@ namespace BrokerApp
         /// <param name="sellQuantity"></param>
         private void CalculateProfit(int sellQuantity)
         {
-            double reimburseBalance = _ownedstock.Stock.Value * sellQuantity;
-            reimburseBalance = Math.Round(reimburseBalance, 2);
-
             if (_ownedstock.OwnedType.Equals("Buy"))
             {
+                double reimburseBalance = _ownedstock.Stock.Value * sellQuantity;
+                reimburseBalance = Math.Round(reimburseBalance, 2);
+
                 //Add profit into current balance
                 _user.GetMarketExchange().GetPortfolio().CurrentBalance += reimburseBalance;
                 _user.GetMarketExchange().GetPortfolio().AssetsValue -= reimburseBalance;
                 _user.GetMarketExchange().GetPortfolio().CalculateTotalBalanceWithAssets();
-            }
-            else
-            {
-                //<<TODO SHORT STOCK LOGIC>> ADD TOTALBUYVALUE PARAMETER TO OWNEDSTOCK DB
-                //Add profit into current balance
-                _user.GetMarketExchange().GetPortfolio().CurrentBalance += reimburseBalance;
-                _user.GetMarketExchange().GetPortfolio().AssetsValue -= reimburseBalance;
-                _user.GetMarketExchange().GetPortfolio().CalculateTotalBalanceWithAssets();
+
+                //Update UserDB
+                this.UpdateUserDB();
             }
 
-            //Update UserDB
-            this.UpdateUserDB();
+            //<<SHORT STOCK LOGIC>>
+            else if (_ownedstock.OwnedType.Equals("Short"))
+            {
+                double oldValue = _ownedstock.StockBoughtValue * sellQuantity;
+                double newValue = _ownedstock.Stock.Value * sellQuantity;
+                double profit = newValue - oldValue;
+                double finalProfit = oldValue - profit;
+                finalProfit = Math.Round(finalProfit, 2);
+
+                //Add profit into current balance
+                _user.GetMarketExchange().GetPortfolio().CurrentBalance += finalProfit;
+                _user.GetMarketExchange().GetPortfolio().AssetsValue -= newValue;
+                _user.GetMarketExchange().GetPortfolio().CalculateTotalBalanceWithAssets();
+
+                //Update UserDB
+                this.UpdateUserDB();
+            }
         }
 
         /// <summary>
