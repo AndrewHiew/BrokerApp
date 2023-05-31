@@ -1,0 +1,104 @@
+﻿<Window x:Class="BrokerApp.UserMainPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BrokerApp"
+        xmlns:Component="clr-namespace:BrokerApp.Component"
+        mc:Ignorable="d"
+        Title="UserMainPage" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="MarketPlace">
+                <Grid Background="#343642">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="0.2*" />
+                    </Grid.RowDefinitions>
+                    <ListView Margin="0,20,0,20" Width="750" Name="StockListBox" SelectionChanged="StockListBox_SelectionChanged" Background="#FFF8FFF4">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" Width="187.5" DisplayMemberBinding="{Binding Id}" />
+                                <GridViewColumn Header="Stock Name" Width="187.5" DisplayMemberBinding="{Binding Name}" />
+                                <GridViewColumn Header="Ticker Symbol" Width="187.5" DisplayMemberBinding="{Binding TickerSymbol}" />
+                                <GridViewColumn Header="Value" Width="187.5" DisplayMemberBinding="{Binding Value}" />
+                            </GridView>
+                        </ListView.View>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Height="30" Width="60" Name="LogoutBtn">Logout</Button>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Portfolio">
+                <Grid Background="#343642">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Background="#FFCEFFE2" Margin="20,20,20,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Width="150" Height="30" FontSize="20" Grid.Column="0">Portfolio Value:</TextBlock>
+                        <TextBlock Name="TotalBalanceBox" Width="150" Height="30" FontSize="20" Grid.Column="1" Text="{Binding TotalBalance}"></TextBlock>
+                        <TextBlock Width="150" Height="30" FontSize="20" Grid.Column="2">Current Balance:</TextBlock>
+                        <TextBlock Name="CurrentBalanceBox" Width="150" Height="30" FontSize="20" Grid.Column="3" Text="{Binding CurrentBalance}"></TextBlock>
+                    </Grid>
+                    <Grid Grid.Row="1" Background="#FFD9F1FF" Margin="20,0,20,0">
+                        <TextBlock Grid.Row="1" Height="30" Width="200"  VerticalAlignment="Center" FontSize="15">Username:</TextBlock>
+                        <TextBlock Height="30" Width="200" Name="NameField" Margin="200,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15">%NAME%</TextBlock>
+                    </Grid>
+                    <Grid Grid.Row="2" Background="#FFD9F1FF" Margin="20,0,20,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Height="30" Width="200" VerticalAlignment="top" Grid.Column="1">Enter the Amount of Credit to Add:</TextBlock>
+                            <TextBox Height="30" Width="200" Name="DepositAmountBox" PreviewTextInput="NumberValidationTextBox" Grid.Column="1"></TextBox>
+                            <Button Height="20" Width="50" Name="DepositBtn" Grid.Column="2">Deposit</Button>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="3" Background="#FFD9F1FF" Margin="20,0,20,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="1" Height="30" Width="220"  VerticalAlignment="top">Enter the Amount of Credit to Withdraw:</TextBlock>
+                            <TextBox Grid.Column="1" Height="30" Width="200" Name="WithdrawAmountBox" PreviewTextInput="NumberValidationTextBox"></TextBox>
+                            <Button Grid.Column="2" Height="20" Width="60" Name="WithdrawBtn">Withdraw</Button>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="4" Background="#FFD9F1FF" Margin="20,0,20,0">
+                        <Button Height="30" Width="130" Name="checkPerformanceBtn">Check Performance</Button>
+                    </Grid>
+                    <Grid Grid.Row="5" Margin="20,0,20,0">
+                        <Button Height="30" Width="130" HorizontalAlignment="Left" Margin="20,0,0,0" Name="ManageAssetsBtn">Manage Assets</Button>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

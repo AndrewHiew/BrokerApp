@@ -1,0 +1,28 @@
+﻿<Window x:Class="BrokerApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BrokerApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="White" Offset="0.465"/>
+                <GradientStop Color="#FE080808"/>
+                <GradientStop Color="#FEA5E6BE"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <TextBlock Name="Testing" Text="Login" FontSize="30" HorizontalAlignment="Center" Margin="0,60,0,-60"></TextBlock>
+        <TextBlock Text="Username" HorizontalAlignment="Left" Margin="284,124,0,268"></TextBlock>
+        <TextBlock Text="Password" HorizontalAlignment="Left" Margin="284,195,0,200" Width="66"/>
+        <TextBlock Text="" Name="ErrorMessageBox" HorizontalAlignment="Center" Margin="0,277,0,110" Width="232" Foreground="Red"/>
+        <TextBox Height="29" Width="232" VerticalAlignment="Top" HorizontalAlignment="Center" Name="UsernameField" Margin="0,151,0,0"/>
+        <PasswordBox Height="29" Width="232" VerticalAlignment="Top" HorizontalAlignment="Center" Name="PasswordField" Margin="0,234,0,0"/>
+
+        <Button Name="LoginSubmitBtn" Height="20" Width="60" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,324,0,0" BorderBrush="Black" >Submit</Button>
+
+    </Grid>
+</Window>

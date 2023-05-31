@@ -1,0 +1,111 @@
+﻿<Window x:Class="BrokerApp.ManageAssets"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BrokerApp"
+        mc:Ignorable="d"
+        Title="ManageAssets" Height="450" Width="1000">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Owned Stock" Name="tab1">
+                <Grid Background="#343642">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="0.2*" />
+                    </Grid.RowDefinitions>
+                    <ListView Margin="0,20,0,20" Width="830" Name="OwnedStockListBox" Background="#FFF8FFF4" SelectionMode="Single">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ID" Width="30" DisplayMemberBinding="{Binding ID}" />
+                                <GridViewColumn Header="Ticker Symbol" Width="100" DisplayMemberBinding="{Binding TickerSymbol}" />
+                                <GridViewColumn Header="Stock Name" Width="200" DisplayMemberBinding="{Binding Name}" />
+                                <GridViewColumn Header="Owned Type" Width="100" DisplayMemberBinding="{Binding OwnedType}" />
+                                <GridViewColumn Header="Value" Width="100" DisplayMemberBinding="{Binding Value}" />
+                                <GridViewColumn Header="Quantity" Width="100" DisplayMemberBinding="{Binding Quantity}" />
+                                <GridViewColumn Header="Total Value" Width="100" DisplayMemberBinding="{Binding TotalValue}" />
+                                <GridViewColumn Header="Bought Value" Width="100" DisplayMemberBinding="{Binding StockBoughtValue}" />
+                            </GridView>
+                        </ListView.View>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Height="30" Width="60" Name="BackBtn">Back</Button>
+                        <Button Grid.Column="2" Height="30" Width="60" Name="SelectBtn">Select</Button>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Order List" Name="tab2">
+                <Grid Background="#343642">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="0.2*" />
+                    </Grid.RowDefinitions>
+                    <ListView Margin="0,20,0,20" Width="700" Name="OrderListBox" SelectionMode="Single" Background="#FFF8FFF4">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" Width="50" DisplayMemberBinding="{Binding OrderID}" />
+                                <GridViewColumn Header="Ticker Symbol" Width="120" DisplayMemberBinding="{Binding TickerSymbol}" />
+                                <GridViewColumn Header="Stock Name" Width="230" DisplayMemberBinding="{Binding Name}" />
+                                <GridViewColumn Header="Order Type" Width="80" DisplayMemberBinding="{Binding OrderType}" />
+                                <GridViewColumn Header="Value" Width="50" DisplayMemberBinding="{Binding Value}" />
+                                <GridViewColumn Header="Quantity" Width="70" DisplayMemberBinding="{Binding Quantity}" />
+                                <GridViewColumn Header="TotalValue" Width="100" DisplayMemberBinding="{Binding TotalValue}" />
+                            </GridView>
+                        </ListView.View>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Height="30" Width="60" Name="OrderDeleteBtn">Delete</Button>
+                        <Button Grid.Column="1" Height="30" Width="60" Name="OrderSelectBtn">Select</Button>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Trade History" Name="tab3">
+                <Grid Background="#343642">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="0.2*" />
+                    </Grid.RowDefinitions>
+                    <ListView Margin="0,20,0,20" Width="700" Name="TradeListBox" SelectionMode="Single" Background="#FFF8FFF4">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Ticker Symbol" Width="170" DisplayMemberBinding="{Binding TickerSymbol}" />
+                                <GridViewColumn Header="Stock Name" Width="230" DisplayMemberBinding="{Binding Name}" />
+                                <GridViewColumn Header="Order Type" Width="80" DisplayMemberBinding="{Binding TradeType}" />
+                                <GridViewColumn Header="Value" Width="50" DisplayMemberBinding="{Binding BuyPrice}" />
+                                <GridViewColumn Header="Quantity" Width="70" DisplayMemberBinding="{Binding Quantity}" />
+                                <GridViewColumn Header="TotalValue" Width="100" DisplayMemberBinding="{Binding TotalBuyValue}" />
+                            </GridView>
+                        </ListView.View>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                    <Grid Grid.Row="3">
+                        <Button Height="30" Width="130" Name="PerformanceBtn">Performance Chart</Button>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
