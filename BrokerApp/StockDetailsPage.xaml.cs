@@ -44,14 +44,11 @@ namespace BrokerApp
         private void StockLinkBtn_Click(object sender, RoutedEventArgs e)
         {
             string chromePath = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
+            string url = "https://finance.yahoo.com/quote/" +_selectedStock.TickerSymbol+"?p="+_selectedStock.TickerSymbol+"&.tsrc=fin-srch";
 
-            if (_selectedStock.TickerSymbol.Equals("AAPL"))
-            {
-                string url = "https://finance.yahoo.com/quote/AAPL?p=AAPL&.tsrc=fin-srch";
-
-                // Start the Chrome process with the URL as a command-line argument
-                Process.Start(new ProcessStartInfo(chromePath, url));
-            }
+            // Start the Chrome process with the URL as a command-line argument
+            Process.Start(new ProcessStartInfo(chromePath, url));
+            
         }
 
         private void GoBackToUserMain()
